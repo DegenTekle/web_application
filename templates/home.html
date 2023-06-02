@@ -17,18 +17,26 @@
     </style>
   </head>
   <body>
+    {% include 'nav.html' %}
+    <img class="img-fluid" id="banner" src="https://webapplication.degentekle.repl.co/static/pic1.jpg">
     <div class="container">
       <h1 class="text-center mt-2 mb-4">The time has come</h1>
-      <img class="img-fluid" id="banner" src="https://webapplication.degentekle.repl.co/static/pic1.jpg">
+      
       <h2 class="text-center mt-2 mb-4">About Battleships</h2>
+      <div class="row" style="margin-bottom:16px">
+        <div class="col-md-6">
       <p class="lead">Place your ships on the playing board. Your opponent will try to guess where your ships are. When it's your turn, try to guess where their ships are by choosing a tile on the opposing board. Try to sink all their battleships to win the game.</p>
+        </div>
+        <div class="d-none d-md-block col-md-6">
+      <img src="/static/pic2.jpg" style="height:320px;border-radius:4px;">
+      </div>
       <h2 class="text-center mt-2 mb-4">Ranking</h2>
       <div>
         {% for game in games %}
           {% include 'gameitem.html' %}
         {% endfor %}
       </div>
-      <div class="text-center"><button class="btn btn-primary btn-lg">Contact Us</button>
+      <div class="text-center"><a href="mailto:degen.tekle@etu.unige.ch?cc=aaron.gogniat@etu.unige.ch&subject=Encountering%20Issues" class="btn btn-primary btn-lg">Email Us</a>
       <p class="mt-4">Copyright 2023, Battleships</p></div>
     </div>
   </body>
