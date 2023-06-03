@@ -12,3 +12,15 @@ def load_games_from_db():
     for row in result.mappings():
       games.append(dict(row))
     return games
+
+def load_game_from_db(id):
+  with engine.connect() as conn:
+    result = conn.execute(text(f"SELECT * FROM games WHERE id={id}"))
+    rows = []
+    column_name = result.keys()
+    for rowi in result.all():
+      rows.append(dict(zip(column_name, rowi)))
+    if len(rows) == 0:
+      return None
+    else:
+      return (rows[0])
