@@ -7,7 +7,7 @@ engine = create_engine(db_connection_string,connect_args={"ssl":{"ssl_ca":"/etc/
 
 def load_games_from_db():
   with engine.connect() as conn:
-    result = conn.execute(text("select * from games"))
+    result = conn.execute(text("select * from games ORDER BY winner_score DESC"))
     games = []
     for row in result.mappings():
       games.append(dict(row))
@@ -24,3 +24,16 @@ def load_game_from_db(id):
       return None
     else:
       return (rows[0])
+
+def add_history_to_db(history):
+  with engine.connect() as conn:
+    
+    query = text("INSERT INTO games(player1,player2,winner,winner_score) VALUES (:name1,:name2,:name_w,:score)")
+    values={
+            'name1':history['name1'],
+            'name2':history['name2'],
+            'name_w':history['name_w'],
+            'score':history['score']}
+    conn.execute(query,values)
+    
+    
